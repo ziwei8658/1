@@ -16,7 +16,7 @@ public class Board{
     //method to update board
     public void printBoard(){
         System.out.println();
-        System.out.print("\u200A\u2009");//escape sequence
+        System.out.print("");//escape sequence
         for (int i = 0; i < board.length; i++){
             if (board[i] == null) {
                 System.out.print("[  ]");
@@ -41,7 +41,7 @@ public class Board{
 
     public boolean end(Piece p)
     {
-        return(p.getType().contains("K"));
+        return(p.type().contains("K"));
     }
     
     public boolean invalidRookMove(int from, int to)
@@ -92,19 +92,19 @@ public class Board{
         }
         
         //you can only use your own pieces
-        if(piece.getPlayer()!= currentPlayer){
+        if(piece.player()!= currentPlayer){
             System.out.println("Wrong color, please move your own pieces");
             return false;
         }
         
         //cannot capture your own piece, end coordinate cannot be another one of your pieces
-        if(board[to] != null && board[to].getPlayer() == currentPlayer){
+        if(board[to] != null && board[to].player() == currentPlayer){
             System.out.println("Can't capture your own piece.");
             return false;
         }
         
         int distance = Math.abs(to - from);//calculate squares moved and restrict piece movements
-        String type = piece.getType();
+        String type = piece.type();
         // king, only move 1 square
         if(type.contains("K") && distance != 1){                    
             out.println("Invalid King Move! Kings can only move one space");

@@ -1,26 +1,9 @@
 import static java.lang.System.out;
-public class Piece{
-    //instance variables
-    private String type;   
-    private int player;    
-    
-    //constructor
-    public Piece(String type, int player){
-        this.type = type;
-        this.player = player;
-    }
-    
-    /******************getters*********************/
-    public int getPlayer()
-    {
-        return player;
-    }
-    
-    public String getType()
-    {
-        return type;
-    }
-    
+
+/*
+    record: simple, short way to create an immutable data class.
+*/
+public record Piece(String type, int player) {
     //methods
     public void captured()
     {
@@ -33,7 +16,7 @@ public class Piece{
             System.out.println("Black is victorious");
         }
     }
-    
+
     public void report(int endpoint)
     {
         switch(type)
@@ -47,9 +30,10 @@ public class Piece{
             
         }
     }
-   
-    public String toString()
-    {
-        return("[" + type + "]");
-    }
+
+    @Override
+        public String toString()
+        {
+            return("[" + type + "]");
+        }
 }
